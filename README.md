@@ -150,7 +150,7 @@ cd claude-code-zh-cn
 - ✅ 合并中文设置到 settings.json
 - ✅ 检测到 CC Switch 通用配置缺少中文设置时，先询问用户；同意后才同步，拒绝则给出手动处理步骤
 - ✅ 安装插件到 `~/.claude/plugins/claude-code-zh-cn/`
-- ✅ 在 stable 安装方式上 patch 硬编码文字（1742 条翻译；当前 stable 代表版本 `2.1.112` 实测 1550 处有效 patch，显示审计 11/11 PASS）
+- ✅ 在 stable 安装方式上 patch 硬编码文字（1747 条翻译；当前 stable 代表版本 `2.1.112` 实测 1552 处有效 patch，显示审计 11/11 PASS）
 - ✅ 在 macOS native experimental 已验证版本上 patch 硬编码文字（`2.1.113 - 2.1.114`、`2.1.116 - 2.1.124`、`2.1.126`、`2.1.128 - 2.1.129`、`2.1.131 - 2.1.133`、`2.1.136 - 2.1.146`、`2.1.148`、`2.1.150`、`2.1.152 - 2.1.153`、`2.1.156` 实测 1320-1385 处，显示审计 11/11 PASS）
 - ✅ 如当前安装方式暂不支持 CLI Patch 或缺少 `node-lief`，自动跳过 Layer 4 并保留 Layer 1~3
 
@@ -267,7 +267,7 @@ powershell -NoProfile -ExecutionPolicy Bypass -File uninstall.ps1
 | 中文上下文注入 | - | SessionStart Hook |
 | 通知翻译 | 6 条 | Notification Hook |
 | 输出风格 | - | Chinese Output Style |
-| UI 文字中文化 | 1742 条翻译，`2.1.112` 实测 1550 处有效 patch；macOS native experimental `2.1.113 - 2.1.114`、`2.1.116 - 2.1.124`、`2.1.126`、`2.1.128 - 2.1.129`、`2.1.131 - 2.1.133`、`2.1.136 - 2.1.146`、`2.1.148`、`2.1.150`、`2.1.152 - 2.1.153`、`2.1.156` 实测 1320-1385 处；固定显示面审计均为 11/11 PASS | CLI Patch（扫描真实双引号字符串 token 后逐条替换）+ 显示面审计 |
+| UI 文字中文化 | 1747 条翻译，`2.1.112` 实测 1552 处有效 patch；macOS native experimental `2.1.113 - 2.1.114`、`2.1.116 - 2.1.124`、`2.1.126`、`2.1.128 - 2.1.129`、`2.1.131 - 2.1.133`、`2.1.136 - 2.1.146`、`2.1.148`、`2.1.150`、`2.1.152 - 2.1.153`、`2.1.156` 实测 1320-1385 处；固定显示面审计均为 11/11 PASS | CLI Patch（扫描真实双引号字符串 token 后逐条替换）+ 显示面审计 |
 | 自动重 patch | - | 版本检测，更新后首次会话自动修复 |
 | 插件自动更新 | - | SessionStart Hook（只跟随已发布 Release tag） |
 
@@ -325,7 +325,7 @@ claude-code-zh-cn/
 ├── patch-cli.sh             ← CLI Patch 入口脚本
 ├── patch-cli.js             ← CLI Patch 核心逻辑（扫描字符串字面量后逐条替换）
 ├── bun-binary-io.js         ← 原生二进制 I/O 工具（官方安装器 native experimental）
-├── cli-translations.json    ← 1742 条 UI 翻译对照表
+├── cli-translations.json    ← 1747 条 UI 翻译对照表
 ├── settings-overlay.json    ← 合并到 settings.json 的中文设置
 ├── plugin/
 │   ├── manifest.json        ← 插件清单
@@ -462,7 +462,7 @@ Windows：现已支持通过 `install.ps1` 在 PowerShell 5.1+ 中原生安装�
 
 **claude-code-zh-cn** is a Simplified Chinese localization plugin for [Claude Code CLI](https://github.com/anthropics/claude-code).
 
-It translates 187 spinner verbs, 41 spinner tips, 1742 UI translations, notification messages, and more. The patch combines safe string scanning for legacy `cli.js` plus an experimental macOS arm64 native-binary path for explicitly verified versions from `2.1.113` through `2.1.156` except unsupported `2.1.115`, `2.1.125`, `2.1.127`, `2.1.130`, `2.1.134`, `2.1.135`, `2.1.147`, `2.1.149`, `2.1.151`, `2.1.154`, `2.1.155`, now guarded by stable display-surface auditing. On Windows, a PowerShell install script (`install.ps1`) is available for the old npm `cli.js` form (2.1.92–2.1.112). Windows native `.exe` is experimental for explicitly verified versions from `2.1.113` through `2.1.153` except unsupported `2.1.115`, `2.1.125`, `2.1.127`, `2.1.130`, `2.1.134`, `2.1.135`, `2.1.147`, `2.1.149`, `2.1.151`; unverified latest builds are skipped for CLI Patch (Layers 1–3 still active). Current support windows are documented in [docs/support-matrix.md](./docs/support-matrix.md).
+It translates 187 spinner verbs, 41 spinner tips, 1747 UI translations, notification messages, and more. The patch combines safe string scanning for legacy `cli.js` plus an experimental macOS arm64 native-binary path for explicitly verified versions from `2.1.113` through `2.1.156` except unsupported `2.1.115`, `2.1.125`, `2.1.127`, `2.1.130`, `2.1.134`, `2.1.135`, `2.1.147`, `2.1.149`, `2.1.151`, `2.1.154`, `2.1.155`, now guarded by stable display-surface auditing. On Windows, a PowerShell install script (`install.ps1`) is available for the old npm `cli.js` form (2.1.92–2.1.112). Windows native `.exe` is experimental for explicitly verified versions from `2.1.113` through `2.1.153` except unsupported `2.1.115`, `2.1.125`, `2.1.127`, `2.1.130`, `2.1.134`, `2.1.135`, `2.1.147`, `2.1.149`, `2.1.151`; unverified latest builds are skipped for CLI Patch (Layers 1–3 still active). Current support windows are documented in [docs/support-matrix.md](./docs/support-matrix.md).
 
 ```bash
 git clone https://github.com/taekchef/claude-code-zh-cn.git
